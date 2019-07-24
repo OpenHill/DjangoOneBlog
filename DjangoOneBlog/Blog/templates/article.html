@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block header_seo %}
+<title>{{article.title}}</title>
+{% endblock %}
+
+{% block header_css_js %}
+<link rel="stylesheet" href="/static/css/article_list.css">
+<link rel="stylesheet" href="/static/css/code.css">
+<link rel="stylesheet" href="/static/css/github.css">
+
+<style>
+    #comment {
+        margin-top: 20px;
+    }
+
+    .comment_title {
+        font-size: 20px;
+        border-bottom: #ededed 2px solid;
+    }
+
+    .content_item_paginator {
+        margin-top: 20px;
+    }
+</style>
+{% endblock %}
+
+
+{% block content %}
+<div class="content_item">
+    <div class="content_item_header">
+        <a style="color: #515151" class="content_item_header_title">{{article.title}}</a>
+        <div class="content_item_header_info">
+            <a class="content_item_header_info_left">发表评论</a>
+            <span class="content_item_header_info_right">{{article.views}}&nbsp;views</span>
+        </div>
+    </div>
+    <div class="content_item_content">
+        {{article.body|safe}}
+    </div>
+
+    <div class="content_item_option">
+        本条目发布于 {{article.create_time|date:'Y-m-d'}} | 分类：{{article.categorys}} |作者： {{article.author}}
+    </div>
+    <div class="content_item_paginator">
+        {% if paginator.ifPrevious %}
+        <a href="/article/{{paginator.previousPage.1}}">上一篇：{{paginator.previousPage.0}}</a>
+        {% else %}
+        <a>上一篇：无</a>
+        {% endif %}
+
+        {% if paginator.ifNext %}
+        <a class="content_item_header_info_right"
+           href="/article/{{paginator.nextPage.1}}">下一篇：{{paginator.nextPage.0}}</a>
+        {% else %}
+        <a class="content_item_header_info_right">下一篇：无</a>
+        {% endif %}
+
+    </div>
+</div>
+<div id="comment">
+    <div class="comment_title">
+        评论
+    </div>
+
+    <!--    {{comment.status}}-->
+
+    {% if comment.status %}
+    <div> 评论开启</div>
+
+    {% else %}
+    <div> 评论关闭</div>
+
+    {% endif %}
+</div>
+{% endblock %}
+

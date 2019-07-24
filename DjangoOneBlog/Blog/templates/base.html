@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block header_seo %}
+    <title>MyDjangoBlog</title>
+    {% endblock %}
+
+    {% block header_css_js %}
+    {% endblock %}
+
+    <style>
+        body {
+            background-color: #e6e6e6;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .main {
+            /*background-color: red;*/
+            width: 60%;
+            margin: 30px auto;
+            box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
+            background-color: #fff;
+            padding: 0 40px;
+        }
+
+        .nav {
+            padding: 24px 0;
+        }
+
+        .nav_title {
+            font-size: 32px;
+            font-weight: 500;
+            color: #515151;
+        }
+
+        .nav_remark {
+            font-size: 15px;
+            color: #515151;
+
+        }
+
+        .nav_tabs {
+            height: 30px;
+            border-bottom: #ededed 1px solid;
+            border-top: #ededed 1px solid;
+            font-size: 17px;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .nav_tabs a {
+            text-decoration: none;
+            color: #515151;
+        }
+
+        .nav_tab {
+            height: 30px;
+            line-height: 30px;
+            float: left;
+            color: #515151;
+            padding: 0 15px;
+        }
+
+        .nav_tab:hover .nav_tab_children_ul {
+            color: #000;
+            display: list-item;
+        }
+
+        /*中间样式*/
+        .content {
+            position: relative;
+        }
+
+        .content_left {
+            display: inline-block;
+            width: 60%;
+        }
+
+        .content_right {
+            /*
+            两个div属性为display:inline-block且高度不同时可能无法顶部对齐
+            需要vertical-align: top;
+            */
+            vertical-align: top;
+            display: inline-block;
+            width: 38%;
+        }
+
+
+        .content_right .search {
+            text-align: center;
+            height: 100%;
+        }
+
+        .content_right .search input[type='text'] {
+            width: 40%;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-family: inherit;
+            padding: 6px;
+            font-size: 10px;
+        }
+
+        .content_right .search input[type='submit'] {
+            padding: 5px 10px;
+            font-size: 10px;
+            line-height: 1.428571429;
+            font-weight: normal;
+            color: #7c7c7c;
+            background-color: #e6e6e6;
+            background-image: -webkit-linear-gradient(top, #f4f4f4, #e6e6e6);
+            border: 1px solid #d2d2d2;
+            border-radius: 3px;
+            box-shadow: 0 1px 2px rgba(64, 64, 64, 0.1);
+        }
+
+        /*底部样式*/
+        .foot {
+            min-height: 50px;
+            padding: 20px 20px;
+        }
+
+        .foot_content {
+            width: 100%;
+            text-align: center;
+            font-size: 17px;
+            color: #515151;
+        }
+
+        .foot_content a:visited {
+            color: #515151;
+        }
+
+        .nav_tab_children_ul {
+            background-color: #efefef;
+            color: #444;
+            position: absolute;
+            width: 120px;
+            z-index: 1;
+            display: none;
+            /*opacity:1;*/
+        }
+
+
+        .nav_tab_children_ul a {
+            font-size: 12px;
+            color: #515151;
+        }
+
+        .nav_tab_children_ul li {
+            padding: 2px 5px 2px 10px;
+
+        }
+
+        .nav_tab_children_ul li:hover {
+            background-color: #e5e5e5;
+            display: list-item;
+        }
+
+        @media screen and (max-width: 1000px) {
+            .main {
+                width: 80%;
+                min-width: 360px;
+            }
+
+            .content_right {
+                display: none;
+            }
+
+            .content_left {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <nav class="nav">
+        <span class="nav_title">标题Man</span><br>
+        <span class="nav_remark">我是可爱的</span>
+        <ul class="nav_tabs">
+            <li class="nav_tab"><a href="/">首页</a></li>
+            <li class="nav_tab"><a href="/class/1/1">
+                技术</a>
+                <ul class="nav_tab_children_ul">
+                    <li><a href="">Python</a></li>
+                    <li><a href="">JavaScript</a></li>
+                </ul>
+            </li>
+            <li class="nav_tab">随笔</li>
+
+            <li class="nav_tab">归档</li>
+            <li class="nav_tab">关于</li>
+        </ul>
+    </nav>
+    <div class="content">
+
+        <div class="content_left">
+            {% block content %}
+
+
+            {% endblock %}
+        </div>
+        <!--right-->
+        <div class="content_right">
+            <div class="search">
+                <input id="searchkey" type="text" name="key">
+                <input id="searchbtn" value="Search" type="submit">
+            </div>
+        </div>
+
+    </div>
+    <footer class="foot">
+        <div class="foot_content">
+            <div>Copyright©&nbsp;2019&nbsp;<a href="/">王先生</a>&nbsp;</div>
+            <div>Powered by <a href="https://www.djangoproject.com/">Django</a>&nbsp;|&nbsp;GitHub&nbsp;<a
+                    href="https://github.com/OpenHill">HillSir</a>&nbsp;
+            </div>
+        </div>
+    </footer>
+</div>
+<script>
+    document.getElementById("searchbtn").onclick = function () {
+        let key = document.getElementById("searchkey").value;
+        if (key !== "") {
+            location.href = "/search/" + key + "/1"
+        }
+
+    };
+
+</script>
+</body>
+</html>

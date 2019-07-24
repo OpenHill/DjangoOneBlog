@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block header_seo %}
+<title>御键天涯，执码四方</title>
+{% endblock %}
+
+{% block header_css_js %}
+<!--{% load static %}-->
+
+<link rel="stylesheet" href="/static/css/article_list.css">
+<link rel="stylesheet" href="/static/css/code.css">
+<link rel="stylesheet" href="/static/css/github.css">
+{% endblock %}
+
+
+{% block content %}
+
+{% include 'article_list.html' %}
+
+{% endblock %}

@@ -1,0 +1,37 @@
+.content_item_header_title {
+    font-size: 26px;
+    text-decoration: none;
+    color: #21759b;
+
+}
+
+.content_item_header_info {
+    font-size: 15px;
+    color: #515151;
+    /*margin-bottom: 5px;*/
+    margin-top: 10px;
+    height: 20px;
+}
+
+
+.content_item_header_info_left {
+    float: left;
+}
+
+.content_item_header_info_right {
+    float: right;
+}
+
+.content_item_option {
+    font-size: 15px;
+    color: #515151;
+}
+
+.item_hr {
+    margin: 25px 5px;
+    border-bottom: 1px #ccc dashed;
+}
+
+.article_more {
+    padding: 0 0 10px 10px;
+}

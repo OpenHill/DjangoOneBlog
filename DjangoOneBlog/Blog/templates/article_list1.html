@@ -1,0 +1,44 @@
+{% if not object_list %}
+<span>无数据</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/">返回首页</a>
+{% endif %}
+{% for foo in object_list %}
+<div class="content_item">
+    <div class="content_item_header">
+        <a class="content_item_header_title" href="/article/{{foo.id}}">{{foo.title}}</a>
+        <div class="content_item_header_info">
+            <a class="content_item_header_info_left">发表评论</a>
+            <span class="content_item_header_info_right">{{foo.views}}&nbsp;views</span>
+        </div>
+    </div>
+    <div class="content_item_content">
+        {{foo.body|safe}}
+    </div>
+    <div class="article_more">
+        <a href="/article/{{foo.id}}">more→</a>
+    </div>
+    <div class="content_item_option">
+        本条目发布于 {{foo.create_time|date:'Y-m-d'}} | {{foo.categorys}} |作者： {{foo.author}}
+    </div>
+</div>
+
+<div class="item_hr">
+
+</div>
+
+
+{% endfor %}
+<div>
+    <a {% if page_obj.has_previous %}
+       href="/popop/{{page_obj.previous_page_number}}"
+       {% endif %}
+    >上一页</a>
+
+
+    <a style="float: right"
+       {% if page_obj.has_next %}
+       href="/popop/{{page_obj.next_page_number}}"
+       {% endif %}
+    >下一页</a>
+
+</div>
+
