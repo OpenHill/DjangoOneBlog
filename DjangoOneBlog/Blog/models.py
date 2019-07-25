@@ -174,7 +174,7 @@ class BlogSettingsTable(models.Model):
 
     @staticmethod
     def get_value(key):
-        setting = BlogSettingsTable.objects.get(pk=1)
+        setting = BlogSettingsTable.objects.filter(id=1).first()
         if setting:
             if hasattr(setting, key):
                 return getattr(setting, key)
