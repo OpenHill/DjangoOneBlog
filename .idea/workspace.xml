@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e128db86-a566-4dc2-beb9-59033744957d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DjangoOneBlog/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DjangoOneBlog/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DjangoOneBlog/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DjangoOneBlog/Blog/templates/article_list1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,13 +40,6 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
       </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="db" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
-        <item name="Blog_blogsettingstable: table" type="3d80ac25:SqliteImplModel$Table" />
-      </path>
     </expand>
     <select />
   </component>
@@ -60,8 +51,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/templates/article_list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="32" column="18" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
+            <state relative-caret-position="472">
+              <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
               <folding>
                 <element signature="n#style#0;n#a#1;n#div#2;n#!!top" expanded="true" />
               </folding>
@@ -69,29 +60,28 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/templates/article.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="544">
+              <caret line="68" column="14" selection-start-line="68" selection-start-column="14" selection-end-line="68" selection-end-column="14" />
+              <folding>
+                <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <marker date="1563800720134" expanded="true" signature="1844:1898" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/view/article.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="142" selection-start-line="142" selection-end-line="142" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/templates/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="17" column="33" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
+            <state relative-caret-position="312">
+              <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+              <folding>
+                <element signature="e#0#59#0" expanded="true" />
+                <element signature="e#4285#5239#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -99,8 +89,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/tool/ArticleTool.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="15" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="360">
+              <caret line="15" column="19" lean-forward="true" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -109,7 +99,35 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="das://9f8ca3eb-6b2e-46ca-aa5d-7795f721ed45/schema/main/table/Blog_blogsettingstable">
+        <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/templates/base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1584" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="3" column="100" selection-start-line="3" selection-start-column="100" selection-end-line="3" selection-end-column="100" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DjangoOneBlog/DjangoOneBlog/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="89" column="22" lean-forward="true" selection-start-line="89" selection-start-column="22" selection-end-line="89" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="das://9f8ca3eb-6b2e-46ca-aa5d-7795f721ed45/schema/main/table/my_cache_table">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
               <filtering enabled="true">
@@ -122,8 +140,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1344">
-              <caret line="74" selection-start-line="74" selection-end-line="74" />
+            <state relative-caret-position="986">
+              <caret line="183" selection-start-line="183" selection-end-line="183" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -134,36 +152,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/view/index.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-75">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="9" column="59" selection-start-line="9" selection-start-column="59" selection-end-line="9" selection-end-column="59" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/templates/article_list1.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="31" column="19" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
-              <folding>
-                <element signature="e#41#47#0" expanded="true" />
-                <element signature="e#47#53#0" expanded="true" />
-                <element signature="e#53#59#0" expanded="true" />
-                <element signature="e#65#71#0" expanded="true" />
-                <element signature="n#style#0;n#a#1;n#div#2;n#!!top" expanded="true" />
-              </folding>
+            <state>
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -188,6 +178,7 @@
       <find>STATIC</find>
       <find>STATICFILES_DIRS</find>
       <find>article_count</find>
+      <find>CACHES</find>
     </findStrings>
     <replaceStrings>
       <replace>Model</replace>
@@ -207,22 +198,22 @@
         <option value="$PROJECT_DIR$/DjangoOneBlog/Blog/templates/error/errors_404.html" />
         <option value="$PROJECT_DIR$/DjangoOneBlog/Blog/view/error.py" />
         <option value="$PROJECT_DIR$/DjangoOneBlog/DjangoOneBlog/urls.py" />
-        <option value="$PROJECT_DIR$/DjangoOneBlog/DjangoOneBlog/settings.py" />
         <option value="$PROJECT_DIR$/DjangoOneBlog/Blog/static/css/article_list.css" />
         <option value="$PROJECT_DIR$/DjangoOneBlog/Blog/templates/article.html" />
         <option value="$PROJECT_DIR$/DjangoOneBlog/Blog/forms.py" />
         <option value="$PROJECT_DIR$/DjangoOneBlog/Blog/tool/AutoDecorator.py" />
         <option value="$PROJECT_DIR$/DjangoOneBlog/Blog/templates/base.html" />
-        <option value="$PROJECT_DIR$/DjangoOneBlog/Blog/tool/ArticleTool.py" />
         <option value="$PROJECT_DIR$/DjangoOneBlog/Blog/view/index.py" />
         <option value="$PROJECT_DIR$/DjangoOneBlog/Blog/models.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
-        <option value="$PROJECT_DIR$/DjangoOneBlog/Blog/templates/index.html" />
-        <option value="$PROJECT_DIR$/DjangoOneBlog/Blog/view/article.py" />
-        <option value="$PROJECT_DIR$/DjangoOneBlog/Blog/urls.py" />
         <option value="$PROJECT_DIR$/DjangoOneBlog/Blog/templates/article_list1.html" />
-        <option value="$PROJECT_DIR$/DjangoOneBlog/Blog/templates/article_list.html" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/DjangoOneBlog/Blog/templates/index.html" />
+        <option value="$PROJECT_DIR$/DjangoOneBlog/Blog/templates/article_list.html" />
+        <option value="$PROJECT_DIR$/DjangoOneBlog/Blog/tool/ArticleTool.py" />
+        <option value="$PROJECT_DIR$/DjangoOneBlog/Blog/urls.py" />
+        <option value="$PROJECT_DIR$/DjangoOneBlog/DjangoOneBlog/settings.py" />
+        <option value="$PROJECT_DIR$/DjangoOneBlog/Blog/view/article.py" />
       </list>
     </option>
   </component>
@@ -248,6 +239,32 @@
             </path>
             <path>
               <item name="DjangoOneBlog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DjangoOneBlog" type="462c0819:PsiDirectoryNode" />
+              <item name="DjangoOneBlog" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DjangoOneBlog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DjangoOneBlog" type="462c0819:PsiDirectoryNode" />
+              <item name="DjangoOneBlog" type="462c0819:PsiDirectoryNode" />
+              <item name="Blog" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DjangoOneBlog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DjangoOneBlog" type="462c0819:PsiDirectoryNode" />
+              <item name="DjangoOneBlog" type="462c0819:PsiDirectoryNode" />
+              <item name="Blog" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DjangoOneBlog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DjangoOneBlog" type="462c0819:PsiDirectoryNode" />
+              <item name="DjangoOneBlog" type="462c0819:PsiDirectoryNode" />
+              <item name="Blog" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DjangoOneBlog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DjangoOneBlog" type="462c0819:PsiDirectoryNode" />
               <item name="DjangoOneBlog" type="462c0819:PsiDirectoryNode" />
               <item name="DjangoOneBlog" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -338,24 +355,24 @@
       <workItem from="1563841042801" duration="12305000" />
       <workItem from="1563861131605" duration="9071000" />
       <workItem from="1563889924889" duration="3736000" />
-      <workItem from="1563927587924" duration="12586000" />
+      <workItem from="1563927587924" duration="26247000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="111577000" />
+    <option name="totallyTimeSpent" value="125238000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-4" width="1922" height="1085" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1339381" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1339381" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32960325" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.27670395" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.2695829" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.13761468" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.36391437" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -363,7 +380,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32960325" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3506626" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.27522936" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.5574771" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.32960325" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -372,30 +389,6 @@
       <window_info anchor="right" id="SciView" order="3" />
       <window_info anchor="right" id="Database" order="4" visible="true" weight="0.18996799" />
     </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1307364" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32960325" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.15971516" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.29501525" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32960325" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.1709054" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.5574771" />
-      <window_info anchor="bottom" id="Database Console" order="13" weight="0.32960325" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.18996799" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -405,7 +398,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/DjangoOneBlog/Blog/view/article.py</url>
-          <line>113</line>
+          <line>118</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -422,36 +415,9 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/DjangoOneBlog$manage.coverage" NAME="manage Coverage Results" MODIFIED="1563937486628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DjangoOneBlog" />
+    <SUITE FILE_PATH="coverage/DjangoOneBlog$manage.coverage" NAME="manage Coverage Results" MODIFIED="1563959320293" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DjangoOneBlog" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="das://9f8ca3eb-6b2e-46ca-aa5d-7795f721ed45/schema/main/table/auth_user_user_permissions">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true">
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://9f8ca3eb-6b2e-46ca-aa5d-7795f721ed45/schema/main/table/Blog_articletable_tags">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true">
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://9f8ca3eb-6b2e-46ca-aa5d-7795f721ed45/schema/main/table/Blog_basemodel">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true">
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
     <entry file="das://9f8ca3eb-6b2e-46ca-aa5d-7795f721ed45/schema/main/table/sqlite_sequence">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -535,17 +501,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DjangoOneBlog/manage.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/templates/article.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1632">
-          <caret line="68" column="14" selection-start-line="68" selection-start-column="14" selection-end-line="68" selection-end-column="14" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <marker date="1563800720134" expanded="true" signature="1844:1898" ph="..." />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../venv/DjangoOneBlog/lib/python3.6/site-packages/django/contrib/admin/views/autocomplete.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -664,13 +619,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../venv/DjangoOneBlog/lib/python3.6/site-packages/django/db/models/manager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="182" selection-start-line="182" selection-end-line="182" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../venv/DjangoOneBlog/lib/python3.6/site-packages/django/db/models/options.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
@@ -720,73 +668,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../venv/DjangoOneBlog/lib/python3.6/site-packages/django/views/generic/list.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-829">
-          <caret line="133" selection-start-line="133" selection-end-line="133" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1344">
-          <caret line="74" selection-start-line="74" selection-end-line="74" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://9f8ca3eb-6b2e-46ca-aa5d-7795f721ed45/schema/main/table/Blog_blogsettingstable">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true">
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/tool/ArticleTool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="17" column="33" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/view/article.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="142" selection-start-line="142" selection-end-line="142" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="9" column="59" selection-start-line="9" selection-start-column="59" selection-end-line="9" selection-end-column="59" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/view/index.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-75">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/templates/article_list1.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
@@ -804,20 +685,130 @@
     <entry file="file://$PROJECT_DIR$/DjangoOneBlog/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://9f8ca3eb-6b2e-46ca-aa5d-7795f721ed45/schema/main/table/Blog_blogsettingstable">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true">
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../venv/DjangoOneBlog/lib/python3.6/site-packages/django/db/models/manager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="174" selection-start-line="174" selection-end-line="174" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../venv/DjangoOneBlog/lib/python3.6/site-packages/django/views/generic/list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-741">
+          <caret line="134" selection-start-line="134" selection-end-line="134" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/templates/article_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="32" column="18" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
+        <state relative-caret-position="472">
+          <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
           <folding>
             <element signature="n#style#0;n#a#1;n#div#2;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/tool/ArticleTool.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        <state relative-caret-position="360">
+          <caret line="15" column="19" lean-forward="true" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/templates/article.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="68" column="14" selection-start-line="68" selection-start-column="14" selection-end-line="68" selection-end-column="14" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <marker date="1563800720134" expanded="true" signature="1844:1898" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/view/index.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="986">
+          <caret line="183" selection-start-line="183" selection-end-line="183" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1584" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="3" column="100" selection-start-line="3" selection-start-column="100" selection-end-line="3" selection-end-column="100" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DjangoOneBlog/DjangoOneBlog/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="89" column="22" lean-forward="true" selection-start-line="89" selection-start-column="22" selection-end-line="89" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://9f8ca3eb-6b2e-46ca-aa5d-7795f721ed45/schema/main/table/my_cache_table">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true">
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DjangoOneBlog/Blog/view/article.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#59#0" expanded="true" />
+            <element signature="e#4285#5239#0" />
+          </folding>
         </state>
       </provider>
     </entry>

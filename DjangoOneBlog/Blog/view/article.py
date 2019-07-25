@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, HttpResponse
+from django.utils.decorators import method_decorator
 from django.views import View
-from django.views.generic import ListView
+from django.views.decorators.cache import cache_page
+from django.views.generic import ListView, DetailView
 
 from ..models import ArticleTable, BlogSettingsTable, CommentTable, CategoryTable
 from django.db.models import Q
@@ -9,126 +11,123 @@ from ..tool.ArticleTool import HandleArticle
 import markdown
 
 
-def article(request, id):
-    # 绝对值
-    id = abs(id)
+# mixin
+class TopMixin:
+    category_object_list = CategoryTable.objects.all()
 
-    # 元数据
-    articleObj = ArticleTable.objects.filter(id=id).first()
+    category_model = {"id": None, "name": None, "childes": []}
 
-    # 是否成功
-    if not articleObj:
-        return redirect(request.path)
+    def get_class(self):
+        category_list = []
 
-    # 下一页 & 上一页
-    nextArticleObj = ArticleTable.objects.filter(id=id + 1).first()
-    previousArticleObj = ArticleTable.objects.filter(id=id - 1).first()
+        def parse(obj):
+            id = obj.id
+            name = obj.name
+            self_model = {"id": id, "name": name, "childes": []}
+            if obj.parent_category:
+                # 有父亲级
+                childes = CategoryTable.objects.filter(parent_category=obj).all()
+                if childes:
+                    for i in childes:
+                        self_model['childes'].append(parse(i))
+                return self_model
+            else:
+                for i in CategoryTable.objects.filter(parent_category=obj).all():
+                    self_model["childes"].append(parse(i))
 
-    # 浏览量+1
-    articleObj.views = articleObj.views + 1
-    articleObj.save()
+                return self_model
 
-    # 处理数据
-    articleObj.body = HandleArticle.handleBody(articleObj.body, True)
-
-    # 分页模型
-    paginator = {
-        "ifNext": True if nextArticleObj else False,
-        "nextPage": [nextArticleObj.__str__(), nextArticleObj.id] if nextArticleObj else None,
-        "ifPrevious": True if previousArticleObj else False,
-        "previousPage": [previousArticleObj.__str__(), previousArticleObj.id] if previousArticleObj else None,
-    }
-
-    # 评论模型
-    comment = {
-        "status": articleObj.comment_status == 'o' and BlogSettingsTable.objects.get(id=1).open_site_comment,
-        "commentlist": CommentTable.objects.filter(article=articleObj).all()
-    }
-
-    return render(request, 'article.html', {"article": articleObj,
-                                            "paginator": paginator,
-                                            "comment": comment})
+        for i in CategoryTable.objects.filter(parent_category=None).all():
+            category_list.append(parse(i))
+        return category_list
 
 
-def article_search(request, key, page):
-    # 保证正确性
-    page = int(page)
-    page = abs(page)
+class ArticleIndexView(TopMixin, DetailView):
+    model = ArticleTable
+    template_name = 'article.html'
+    context_object_name = 'article'
+    pk_url_kwarg = 'id'
 
-    # 从设置表里拉取数据
-    pageNum = 10
-    settings = BlogSettingsTable.objects.get(pk=1)
-    if settings:
-        pageNum = settings.article_count
+    @method_decorator(cache_page(10))
+    def get(self, request, *args, **kwargs):
+        """
+        重构GET,添加缓存
+        :param request:
+        :param args:
+        :param kwargs:
+        :return:
+        """
+        response = super().get(request, *args, **kwargs)
 
-    # 获取元数据
-    article_list_all = ArticleTable.objects.filter(
-        Q(title__contains=key) | Q(body__contains=key), status='n').all()
+        return response
 
-    # 切割数据
-    article_list = article_list_all[(page - 1) * pageNum:page * pageNum]
+    def get_queryset(self):
+        id = self.kwargs.get('id')
+        return self.model.objects.filter(status='n', id=id).first()
 
-    paginator = HandleArticle.handlePaginator_id_page(allNum=len(article_list_all), id=key, page=page, pageNum=pageNum,
-                                                      formatstr='/search/{}/{}')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['article'].body = HandleArticle.handleBody(context['article'].body, True)
 
-    # 数据处理
-    for i, item in enumerate(article_list):
-        article_list[i].body = HandleArticle.handleBody(article_list[i].body, False)
+        articleObj = self.get_queryset()
+        nextArticleObj = articleObj.next_article
+        previousArticleObj = articleObj.prev_article
 
-    return render(request, 'index.html', {"article_list": article_list, "paginator": paginator})
+        paginator = self.get_paginator(nextArticleObj, previousArticleObj)
 
+        context['top'] = self.get_class()
+        context['paginator'] = paginator
+        context['comment'] = self.get_comment(articleObj)
 
-def article_class(request, id, page):
-    # 初始化变量
-    id = abs(id)
-    page = int(page)
-    page = abs(page)
-    pageNum = 10
+        return context
 
-    # 从设置表里拉取数据
-    settings = BlogSettingsTable.objects.get(pk=1)
-    if settings:
-        pageNum = settings.article_count
+    def get_paginator(self, next_obj, perv_obj):
+        """
+        获取文章的下一篇与下另一篇
+        :param next_obj:
+        :param perv_obj:
+        :return:
+        """
+        paginator = {
+            "ifNext": True if next_obj else False,
+            "nextPage": [next_obj.__str__(), next_obj.id] if next_obj else None,
+            "ifPrevious": True if perv_obj else False,
+            "previousPage": [perv_obj.__str__(), perv_obj.id] if perv_obj else None,
+        }
 
-    # 查出元数据
-    category = CategoryTable.objects.get(pk=id)
+        return paginator
 
-    # 判断是否存在父级
-    parent_category = category.parent_category
-    # if not parent_category:
-    article_list_all = ArticleTable.objects.filter(categorys=category).all()
-    if not parent_category:
-        # 不存在父级
-        all_children = category.get_category_children()
-        all_article = []
-        if all_children:
-            for i in all_children:
-                article_low_list = ArticleTable.objects.filter(categorys=i).all()
-                if article_low_list:
-                    for j in article_low_list:
-                        all_article.append(j)
+    def get_comment(self, articleObj):
+        """
+        获取文章下的评论
+        :param articleObj:
+        :return:
+        """
+        comment = {
+            "status": articleObj.comment_status == 'o' and BlogSettingsTable.objects.get(id=1).open_site_comment,
+            "commentlist": CommentTable.objects.filter(article=articleObj).all()
+        }
+        return comment
 
-        article_list_all = list(set(all_article))
-
-        # 切割数据
-    article_list = article_list_all[(page - 1) * pageNum:page * pageNum]
-
-    paginator = HandleArticle.handlePaginator_id_page(allNum=len(article_list_all), id=id, page=page, pageNum=pageNum,
-                                                      formatstr='/class/{}/{}')
-
-    # 数据处理
-    for i, item in enumerate(article_list):
-        article_list[i].body = HandleArticle.handleBody(article_list[i].body, False)
-
-    return render(request, 'index.html', {"article_list": article_list, "paginator": paginator})
+    # 首页
 
 
-class ArticleIndexListView(ListView):
+class ArticleIndexListView(TopMixin, ListView):
     model = ArticleTable
     template_name = "index.html"
     paginate_by = BlogSettingsTable.get_value("article_count")
     context_object_name = "article_list"
-    page_kwarg = 'page'
+    pageCount = BlogSettingsTable.get_value("article_count") or 10
+
+    @method_decorator(cache_page(10))
+    def get(self, request, *args, **kwargs):
+        """重构GET,添加缓存
+        :param request:
+        :param args:
+        :param kwargs:
+        :return:
+        """
+        return super().get(request, *args, **kwargs)
 
     def get_queryset(self):
         article_all = []
@@ -139,7 +138,113 @@ class ArticleIndexListView(ListView):
         return article_all
 
     def get_context_data(self, **kwargs):
-        context = super(ArticleIndexListView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
+
+        # 自定义分页
+        article_num = len(self.get_queryset())
+        page = int(self.request.GET.get('page', None) or 1)
+
+        context['diy_paginator'] = HandleArticle.handlePaginator_page(article_num, page, self.pageCount, "/?page={}")
+        context['top'] = self.get_class()
         return context
 
-# def get_context_data(self, *, object_list=None, **kwargs):
+
+class ArticleSearchListView(TopMixin, ListView):
+    model = ArticleTable
+    template_name = "index.html"
+    paginate_by = BlogSettingsTable.get_value("article_count")
+    context_object_name = "article_list"
+    pageCount = BlogSettingsTable.get_value("article_count") or 10
+
+    @method_decorator(cache_page(10))
+    def get(self, request, *args, **kwargs):
+        """重构GET,添加缓存
+        :param request:
+        :param args:
+        :param kwargs:
+        :return:
+        """
+        return super().get(request, *args, **kwargs)
+
+    def get_queryset(self):
+        key = self.kwargs.get("key")
+        # page = self.kwargs.get("page")
+
+        article_all = []
+        article = ArticleTable.objects.filter(
+            Q(title__contains=key) | Q(body__contains=key), status='n').all()
+        for i in article:
+            i.body = HandleArticle.handleBody(i.body, False)
+            article_all.append(i)
+        return article_all
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # 自定义分页
+        article_num = len(self.get_queryset())
+        page = int(self.kwargs.get('page', None) or 1)
+        key = self.kwargs.get('key', " ")
+
+        context['top'] = self.get_class()
+        context['diy_paginator'] = HandleArticle.handlePaginator_id_page(
+            allNum=article_num, id=key, page=page, pageCount=self.pageCount,
+            formatstr="/search/{}/{}")
+
+        return context
+
+
+class ArticleClassListView(TopMixin, ListView):
+    model = ArticleTable
+    template_name = "index.html"
+    paginate_by = BlogSettingsTable.get_value("article_count")
+    context_object_name = "article_list"
+    pageCount = BlogSettingsTable.get_value("article_count") or 10
+
+    @method_decorator(cache_page(10))
+    def get(self, request, *args, **kwargs):
+        """重构GET,添加缓存
+        :param request:
+        :param args:
+        :param kwargs:
+        :return:
+        """
+        return super().get(request, *args, **kwargs)
+
+    def get_queryset(self):
+        id = self.kwargs.get("id")
+        category = CategoryTable.objects.get(pk=id)
+        parent_category = category.parent_category
+
+        article_all = []
+
+        if not parent_category:
+            # 不存在父级
+            all_children = category.get_category_children()
+            all_article = []
+            if all_children:
+                for i in all_children:
+                    article_low_list = ArticleTable.objects.filter(categorys=i).all()
+                    if article_low_list:
+                        for j in article_low_list:
+                            j.body = HandleArticle.handleBody(j.body, False)
+                            all_article.append(j)
+
+            article_all = list(set(all_article))
+
+        return article_all
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # 自定义分页
+        article_num = len(self.get_queryset())
+        page = int(self.kwargs.get('page', None) or 1)
+        id = int(self.kwargs.get('id'))
+
+        context['top'] = self.get_class()
+        context['diy_paginator'] = HandleArticle.handlePaginator_id_page(
+            allNum=article_num, id=id, page=page, pageCount=self.pageCount,
+            formatstr="/class/{}/{}")
+
+        return context

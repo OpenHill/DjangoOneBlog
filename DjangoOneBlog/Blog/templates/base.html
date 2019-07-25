@@ -185,18 +185,26 @@
         <span class="nav_title">标题Man</span><br>
         <span class="nav_remark">我是可爱的</span>
         <ul class="nav_tabs">
-            <li class="nav_tab"><a href="/">首页</a></li>
-            <li class="nav_tab"><a href="/class/1/1">
-                技术</a>
-                <ul class="nav_tab_children_ul">
-                    <li><a href="">Python</a></li>
-                    <li><a href="">JavaScript</a></li>
-                </ul>
-            </li>
-            <li class="nav_tab">随笔</li>
 
+            <li class="nav_tab"><a href="/">首页</a></li>
+            {% for foo in top %}
+            <li class="nav_tab"><a href="/class/{{foo.id}}/1">{{foo.name}}</a>
+                {% if foo.childes %}
+                <ul class="nav_tab_children_ul">
+                    {% for fo in foo.childes %}
+                    <li><a href="/class/{{fo.id}}/1">{{fo.name}}</a></li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
+
+            </li>
+
+            {% endfor %}
             <li class="nav_tab">归档</li>
             <li class="nav_tab">关于</li>
+
+
         </ul>
     </nav>
     <div class="content">
