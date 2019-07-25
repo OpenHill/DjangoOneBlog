@@ -115,7 +115,6 @@ class ArticleIndexView(TopMixin, DetailView):
 class ArticleIndexListView(TopMixin, ListView):
     model = ArticleTable
     template_name = "index.html"
-    paginate_by = BlogSettingsTable.get_value("article_count")
     context_object_name = "article_list"
     pageCount = BlogSettingsTable.get_value("article_count") or 10
 
@@ -152,7 +151,6 @@ class ArticleIndexListView(TopMixin, ListView):
 class ArticleSearchListView(TopMixin, ListView):
     model = ArticleTable
     template_name = "index.html"
-    paginate_by = BlogSettingsTable.get_value("article_count")
     context_object_name = "article_list"
     pageCount = BlogSettingsTable.get_value("article_count") or 10
 
@@ -197,7 +195,6 @@ class ArticleSearchListView(TopMixin, ListView):
 class ArticleClassListView(TopMixin, ListView):
     model = ArticleTable
     template_name = "index.html"
-    paginate_by = BlogSettingsTable.get_value("article_count")
     context_object_name = "article_list"
     pageCount = BlogSettingsTable.get_value("article_count") or 10
 
