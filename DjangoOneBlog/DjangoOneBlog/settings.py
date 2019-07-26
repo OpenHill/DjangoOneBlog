@@ -77,12 +77,6 @@ WSGI_APPLICATION = 'DjangoOneBlog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-<<<<<<< HEAD
-=======
-# import pymysql
-# pymysql.install_as_MySQLdb()
->>>>>>> master
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
