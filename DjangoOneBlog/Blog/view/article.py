@@ -63,15 +63,15 @@ class ArticleIndexView(TopMixin, DetailView):
 
     def get_queryset(self):
         id = self.kwargs.get('id')
-        return self.model.objects.filter(status='n', id=id).first()
+        return self.model.objects.filter(status='n', id=id).all()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['article'].body = HandleArticle.handleBody(context['article'].body, True)
 
-        articleObj = self.get_queryset()
-        nextArticleObj = articleObj.next_article
-        previousArticleObj = articleObj.prev_article
+        articleObj = self.get_queryset()[0]
+        nextArticleObj = articleObj.next_article()
+        previousArticleObj = articleObj.prev_article()
 
         paginator = self.get_paginator(nextArticleObj, previousArticleObj)
 
