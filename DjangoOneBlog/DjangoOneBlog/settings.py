@@ -18,11 +18,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'o8spfy&@kik#kxb3y=h&s4b%hx&7%$azvw%86(8n9ret04lp*1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+# SECURITY WARNING: keep the secret key used in production secret!
+
+SECRET_KEY = 'o8spfy&@kik#kxb3y=h&s4b%hx&7%$azvw%86(8n9ret04lp*1'
 
 ALLOWED_HOSTS = ["*"]
 
@@ -75,14 +77,20 @@ WSGI_APPLICATION = 'DjangoOneBlog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# import pymysql
+# pymysql.install_as_MySQLdb()
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "test",
+        "USER": "Blog",
+        "PASSWORD": "123",
+        "HOST": "localhost",
+        "PORT": '3306',
     }
 }
 
-# CACHE_BACKEND = {
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
@@ -132,10 +140,8 @@ USE_TZ = True
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
-    # os.path.join(BASE_DIR, 'static'),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
-# STATIC_ROOT = '/static/'
 STATIC_URL = '/static/'
 
 # mdeditor

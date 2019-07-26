@@ -51,11 +51,11 @@ class ArticleTable(BaseModel):
 
     def next_article(self):
         # 下一篇
-        return ArticleTable.objects.filter(id__gt=self.id, status=2).order_by('id').first()
+        return ArticleTable.objects.filter(id__gt=self.id, status='n').order_by('id').first()
 
     def prev_article(self):
         # 前一篇
-        return ArticleTable.objects.filter(id__lt=self.id, status=2).first()
+        return ArticleTable.objects.filter(id__lt=self.id, status='n').first()
 
     # 元类
     # http://www.liujiangblog.com/course/django/99
@@ -174,7 +174,11 @@ class BlogSettingsTable(models.Model):
 
     @staticmethod
     def get_value(key):
-        setting = BlogSettingsTable.objects.filter(id=1).first()
+        try:
+            setting = BlogSettingsTable.objects.filter(id=1).first()
+        except:
+            setting = None
+
         if setting:
             if hasattr(setting, key):
                 return getattr(setting, key)
