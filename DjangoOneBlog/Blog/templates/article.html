@@ -22,7 +22,142 @@
     .content_item_paginator {
         margin-top: 20px;
     }
+
+    #comment_textarea {
+        height: 8rem;
+        width: 100%;
+        /*overflow:hidden;*/
+        resize: none;
+    }
+
+    #comment textarea {
+        margin-top: 5px;
+    }
+
+    #comment button {
+        /*margin-top: 5px;*/
+        padding: 5px 10px;
+        background-color: #ededed;
+        border: 0 #ededed solid;
+
+    }
+
+    #ait_id {
+        display: none;
+        position: absolute;
+        top: 34px;
+        color: red;
+    }
+
+    .inputs {
+        width: 45%;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        font-family: inherit;
+        padding: 6px;
+        font-size: 13px;
+    }
 </style>
+<script>
+    window.onload = function () {
+
+        // 是否艾特了
+        let COMMENT_ANDS = false;
+
+        let comment_obj = $("#comment_textarea");
+        let ait_id = $("#ait_id");
+        let maxlen = 0;
+
+        comment_obj.keyup(function () {
+            let comment_text = comment_obj.val();
+
+            if (!COMMENT_ANDS) {
+                let re_s = new RegExp('^@#[0-9]+\\s+');
+                if (re_s.test(comment_text)) {
+                    // 匹配的字符
+                    let re_str = re_s.exec(comment_text);
+                    re_str = re_str[0].trim();
+                    maxlen = re_str.length + 1;
+                    comment_text = comment_text.replace(re_str, '');
+
+                    let comment_obj_str = "";
+                    for (let i = 0; i < maxlen; i++) {
+                        comment_obj_str = comment_obj_str + " "
+                    }
+
+                    comment_obj.val(comment_obj_str + comment_text)
+                    COMMENT_ANDS = true;
+                    ait_id.css('display', 'block');
+                    ait_id.text(re_str);
+                }
+
+            } else {
+                let reg_str = '^\\s{' + maxlen + '}';
+                console.log(reg_str);
+                let re_s = new RegExp(reg_str);
+                if (!re_s.test(comment_text)) {
+                    ait_id.css('display', 'none');
+                    ait_id.text('');
+                    comment_obj.val('');
+                    COMMENT_ANDS = false;
+
+                }
+            }
+
+        });
+
+        $('#send_comment').click(function () {
+            let comment_name = $('#comment_name').val().trim();
+            let comment_mail = $('#comment_mail').val().trim();
+            let cid = ait_id.text().replace('@#', '');
+            let comment_text = comment_obj.val().trim();
+
+
+            //非空验证
+            if (!comment_text) {
+                console.log('comment_text空');
+                return;
+            }
+
+            if (comment_name == null || comment_name == '') {
+                console.log('comment_name空');
+                return;
+            }
+
+            if (comment_mail !== '') {
+                var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                if (!re.test(String(comment_mail).toLowerCase())) {
+                    console.log('comment_mail错误');
+                    return;
+                }
+            }
+
+
+            $.ajax('/article/comment', {
+                type: 'post',
+                data: {
+                    aid: '{{article.id}}',
+                    cid: cid,
+                    comment_text: comment_text,
+                    comment_name: comment_name,
+                    comment_mail: comment_mail,
+                },
+                dataTypes: 'jsonp',
+                success: function (res) {
+                    console.log(res);
+                    if (res.code === 200) {
+                        window.location.reload()
+                    }
+                }
+            })
+
+        });
+        $('.re_comment').click(function () {
+            var id = this.dataset.id;
+            comment_obj.val('@#' + id)
+        })
+    }
+</script>
 {% endblock %}
 
 
@@ -66,7 +201,47 @@
     <!--    {{comment.status}}-->
 
     {% if comment.status %}
-    <div> 评论开启</div>
+    <div> 评论开启 @#<span style="color: red">评论id</span></div>
+
+    <div style="position: relative">
+        <input id="comment_name" class="inputs" type="text" placeholder="请输入发布昵称，必填">
+        <input id="comment_mail" class="inputs" type="text" placeholder="请输入邮箱，有人回复您将收到Email提示，非必填">
+
+        <textarea cols="2" rows="8" id="comment_textarea" placeholder="@评论请按格式输入 “@#评论ID 内容”"></textarea>
+        <div id="ait_id"></div>
+
+        <div style="text-align: right">
+            <button id="send_comment">发表评论</button>
+        </div>
+    </div>
+
+    <div>
+        {% for foo in comment.commentlist %}
+
+        <div>
+            <span>{% if foo.name %}
+                Name:<span style="color: #0044DD">{{foo.name}}</span>--
+            {% endif %}ID:{{foo.id}} </span><span style="float: right;">{{foo.create_time|date:'Y-m-d'}}</span>
+            <div style="margin-left: 30px; border-bottom: #ededed 1px solid;">{{foo.content}}--<a
+                    class="re_comment" data-id="{{foo.id}}" href="#comment_textarea">回复</a></div>
+            {% if foo.children %}
+            <div style="margin-left: 30px; ">
+                {% for i in foo.children %}
+                <span>ID#{{i.id}}</span><span style="float: right;">{{i.create_time|date:'Y-m-d'}}</span>
+                <div style="padding-left: 30px;border-bottom: #ededed 1px solid; ">{{i.content}}--<a
+                        class="re_comment" data-id="{{foo.id}}" href="#comment_textarea">回复</a></div>
+                {% endfor %}
+
+            </div>
+            {% endif %}
+
+        </div>
+
+
+        {% endfor %}
+
+    </div>
+
 
     {% else %}
     <div> 评论关闭</div>

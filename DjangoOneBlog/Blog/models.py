@@ -108,7 +108,7 @@ class CategoryTable(BaseModel):
                 parse(child)
 
         parse(self)
-        print(len(categorys), len(all_categorys))
+        # print(len(categorys), len(all_categorys))
         return categorys
 
     class Meta:
@@ -139,9 +139,13 @@ class TagTable(BaseModel):
         verbose_name_plural = verbose_name
 
 
-class CommentTable(models.Model):
+class CommentTable(BaseModel):
     content = models.CharField("评论内容", max_length=200)  # 200长
-    article = models.ForeignKey('ArticleTable', verbose_name="评论的文章", blank=True, on_delete=models.CASCADE, )
+    name = models.CharField("评论者昵称", max_length=20)  # 200长
+    email = models.EmailField("评论者邮箱", max_length=50, null=True)  # 200长
+    parent_comment = models.ForeignKey('self', related_name='pc', verbose_name='父亲级评论', blank=True, null=True,
+                                       on_delete=models.CASCADE)
+    article = models.ForeignKey('ArticleTable', verbose_name="评论的文章", blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.article.title + " --评论--> " + self.content

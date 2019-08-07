@@ -67,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'Blog.tool.context_processors.get_class'
             ],
         },
     },
@@ -80,8 +81,8 @@ WSGI_APPLICATION = 'DjangoOneBlog.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "test",
-        "USER": "Blog",
+        "NAME": "Blog",
+        "USER": "root",
         "PASSWORD": "123",
         "HOST": "localhost",
         "PORT": '3306',
@@ -136,9 +137,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'Blog/static'),
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
 # mdeditor

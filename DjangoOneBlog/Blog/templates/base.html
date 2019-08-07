@@ -6,7 +6,15 @@
     <title>MyDjangoBlog</title>
     {% endblock %}
 
+    <script src="https://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+    <!--ajax-->
+    <script>
+        $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
+        });
+    </script>
     {% block header_css_js %}
+
     {% endblock %}
 
     <style>
@@ -182,12 +190,12 @@
 <body>
 <div class="main">
     <nav class="nav">
-        <span class="nav_title">标题Man</span><br>
-        <span class="nav_remark">我是可爱的</span>
+        <span class="nav_title">{{public_setting.title}}</span><br>
+        <span class="nav_remark">{{public_setting.title_description}}</span>
         <ul class="nav_tabs">
 
             <li class="nav_tab"><a href="/">首页</a></li>
-            {% for foo in top %}
+            {% for foo in public_top_data %}
             <li class="nav_tab"><a href="/class/{{foo.id}}/1">{{foo.name}}</a>
                 {% if foo.childes %}
                 <ul class="nav_tab_children_ul">

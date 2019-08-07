@@ -17,7 +17,7 @@
         <a href="/article/{{foo.id}}">more→</a>
     </div>
     <div class="content_item_option">
-        本条目发布于 {{foo.create_time|date:'Y-m-d'}} | {{foo.categorys}} | {% for fo in foo.tags.all %}{{fo.name}}{% endfor%}
+        本条目发布于 {{foo.create_time|date:'Y-m-d'}} | <a href="/class/{{foo.categorys.id}}/1">{{foo.categorys}}</a>  {% for fo in foo.tags.all %}|{{fo.name}}&nbsp;|&nbsp;{% endfor%}
         | 作者： {{foo.author}}
     </div>
 </div>
