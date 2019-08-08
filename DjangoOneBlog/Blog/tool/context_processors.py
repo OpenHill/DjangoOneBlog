@@ -1,4 +1,4 @@
-from ..models import CategoryTable, BlogSettingsTable
+from ..models import CategoryTable, BlogSettingsTable, ArticleTable
 
 
 def get_class(request):
@@ -40,4 +40,17 @@ def get_class(request):
     return {
         'public_top_data': category_list,
         'public_setting': setting
+    }
+
+
+def views_article(request):
+    ar = ArticleTable.objects.filter(status='n').order_by('-views').all()[:5]
+    return {
+        'views_article': ar
+    }
+
+def lately_article(request):
+    ar = ArticleTable.objects.filter(status='n').order_by('-pub_time').all()[:5]
+    return {
+        'lately_article': ar
     }
