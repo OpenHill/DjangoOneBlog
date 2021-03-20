@@ -1,6 +1,6 @@
 Django==2.2.4
 django-mdeditor==0.1.15
-Jinja2==2.10.1
+Jinja2==2.11.3
 Markdown==3.1.1
 MarkupSafe==1.1.1
 mysqlclient==1.4.2.post1
@@ -10,7 +10,7 @@ pytz==2019.1
 sqlparse==0.3.0
 Django==2.2.4
 django-mdeditor==0.1.15
-Jinja2==2.10.1
+Jinja2==2.11.3
 Markdown==3.1.1
 MarkupSafe==1.1.1
 mysqlclient==1.4.2.post1
