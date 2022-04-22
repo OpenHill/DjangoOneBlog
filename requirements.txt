@@ -1,4 +1,4 @@
-Django==2.2.4
+Django==2.2.28
 django-mdeditor==0.1.15
 Jinja2==2.10.1
 Markdown==3.1.1
@@ -8,7 +8,7 @@ Pygments==2.4.2
 PyMySQL==0.9.3
 pytz==2019.1
 sqlparse==0.3.0
-Django==2.2.4
+Django==2.2.28
 django-mdeditor==0.1.15
 Jinja2==2.10.1
 Markdown==3.1.1
